@@ -255,9 +255,11 @@ class DivarCrawler
                 $urlToCall = str_replace([':city', ':query'], [$citySlug, urlencode($objective)], static::BASE_URL);
                 curl_setopt($curl, CURLOPT_URL, $urlToCall);
                 $response = json_decode(curl_exec($curl));
+                if (is_null($response)) {
+                    continute;
+                }
                 $this->lastStates[$objective][$citySlug] = $this
                     ->handleResponseAndGetLastToken($response, $lastToken, $objective);
-
             }
         }
         $this->writeNewStatesToFile();
