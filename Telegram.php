@@ -5,7 +5,7 @@ namespace App;
 class Telegram
 {
     const TELEGRAM_API_URL = 'https://api.telegram.org';
-    const BOT_TOKEN = 'bot314272700:AAHIfiiIkcISrO1GPbHRRqr9hvdJm4awYQI';
+    const BOT_TOKEN = 'bot1257768792:AAELXFtHGe-o6VbCIiVdTVq05i2jHFkYK3A';
     const CHAT_ID = '70582354';//'-1001430381467';
 
     /**
