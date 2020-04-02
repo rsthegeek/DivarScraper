@@ -250,7 +250,8 @@ class DivarCrawler
                 $urlToCall = str_replace([':city', ':query'], [$citySlug, urlencode($objective)], static::BASE_URL);
                 curl_setopt($curl, CURLOPT_URL, $urlToCall);
                 $response = json_decode(curl_exec($curl));
-                $this->lastStates[$objective][$citySlug] = $this->handleResponseAndGetLastToken($response, $lastToken);
+                $this->lastStates[$objective][$citySlug] = $this
+                    ->handleResponseAndGetLastToken($response, $lastToken, $objective);
 
             }
         }
@@ -288,7 +289,7 @@ class DivarCrawler
                 . Util::object_get($item, 'data.district', 'منطقه') . '</i>' . PHP_EOL
                 . '<b><a href="' . $link . '">' . Util::object_get($item, 'data.title', '???') . '</a></b>' . PHP_EOL
                 . Util::object_get($item, 'data.description', '???') . PHP_EOL . PHP_EOL
-                . '#'.Util::object_get($item, 'data.city', 'شهر') . " #{$objective}";
+                . '#' . Util::object_get($item, 'data.city', 'شهر') . " #{$objective}";
             $image = Util::object_get($item, 'data.image');
             is_null($image) ? $this->telegram->sendMessage($text) : $this->telegram->sendPhoto($image, $text);
         }
