@@ -204,7 +204,7 @@ class DivarCrawler
         'فوکال',
         'groundzero',
         'ground zero',
-        'گرند زیرو',
+        'گرندزیرو',
         'rockford',
         'راکفورد',
         'zapco',
@@ -213,12 +213,8 @@ class DivarCrawler
         'dynaudio',
         'داین',
         'dls',
-        'دی ال اس',
         'audison',
         'آدیسان',
-        'ادیسان',
-        'آدیسون',
-        'ادیسون',
     ];
     const STATES_FILENAME = 'states.dat';
 
