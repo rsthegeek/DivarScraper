@@ -256,7 +256,7 @@ class DivarCrawler
                 curl_setopt($curl, CURLOPT_URL, $urlToCall);
                 $response = json_decode(curl_exec($curl));
                 if (is_null($response)) {
-                    continute;
+                    continue;
                 }
                 $this->lastStates[$objective][$citySlug] = $this
                     ->handleResponseAndGetLastToken($response, $lastToken, $objective);
