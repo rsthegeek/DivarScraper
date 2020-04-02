@@ -293,7 +293,7 @@ class DivarCrawler
              */
             $link = str_replace(':token', Util::object_get($item, 'data.token'), self::BASE_LINK);
             $text = '<i>' . Util::object_get($item, 'data.city', 'شهر') . '، '
-                . Util::object_get($item, 'data.district', 'منطقه') . '</i>' . PHP_EOL
+                . Util::object_get($item, 'data.district', '<del>:منطقه:</del>') . '</i>' . PHP_EOL
                 . '<b><a href="' . $link . '">' . Util::object_get($item, 'data.title', '???') . '</a></b>' . PHP_EOL
                 . Util::object_get($item, 'data.description', '???') . PHP_EOL . PHP_EOL
                 . '#' . Util::object_get($item, 'data.city', 'شهر') . " #" . str_replace(' ', '_', $objective);
