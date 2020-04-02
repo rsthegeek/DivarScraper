@@ -51,12 +51,13 @@ class Telegram
         return curl_exec($this->curl);
     }
 
-    public function sendMessage(string $text = null)
+    public function sendMessage(string $text = null, bool $silent = false)
     {
         return $this->call('sendMessage', [
             'chat_id' . '=' . urlencode(self::CHAT_ID),
             'text' . '=' . urlencode($text),
             'parse_mode' . '=' . urlencode('html'),
+            'disable_notification' . '=' . urlencode($silent),
         ]);
     }
 }

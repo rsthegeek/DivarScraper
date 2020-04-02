@@ -9,4 +9,6 @@ require __DIR__ . '/DivarCrawler.php';
 $master = new App\DivarCrawler();
 $master->crawl();
 
-echo "\n\n\033[42mFinished in: " . (microtime(true) - START) . " seconds\033[0m\n";
+$info = "Finished in: " . (microtime(true) - START) . " seconds";
+(new App\Telegram)->sendMessage($info, true);
+echo "\n\n\033[42m" . $info . "\033[0m\n";
