@@ -20,7 +20,6 @@ class DivarCrawler
         "qom" => 'قم',
         "rasht" => 'رشت',
 
-        /*
         "abadan" => 'آبادان',
         "abadeh" => 'آباده',
         "abdanan" => 'آبدانان',
@@ -194,7 +193,6 @@ class DivarCrawler
         "hamedan" => 'همدان',
         "yasuj" => 'یاسوج',
         "yazd" => 'یزد',
-        */
     ];
 
     const OBJECTIVES = [
@@ -214,6 +212,13 @@ class DivarCrawler
         'زاپکو',
         'dynaudio',
         'داین',
+        'dls',
+        'دی ال اس',
+        'audison',
+        'آدیسان',
+        'ادیسان',
+        'آدیسون',
+        'ادیسون',
     ];
     const STATES_FILENAME = 'states.dat';
 
@@ -289,7 +294,7 @@ class DivarCrawler
                 . Util::object_get($item, 'data.district', 'منطقه') . '</i>' . PHP_EOL
                 . '<b><a href="' . $link . '">' . Util::object_get($item, 'data.title', '???') . '</a></b>' . PHP_EOL
                 . Util::object_get($item, 'data.description', '???') . PHP_EOL . PHP_EOL
-                . '#' . Util::object_get($item, 'data.city', 'شهر') . " #{$objective}";
+                . '#' . Util::object_get($item, 'data.city', 'شهر') . " #" . str_replace(' ', '_', $objective);
             $image = Util::object_get($item, 'data.image');
             is_null($image) ? $this->telegram->sendMessage($text) : $this->telegram->sendPhoto($image, $text);
         }
