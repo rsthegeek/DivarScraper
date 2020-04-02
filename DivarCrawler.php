@@ -232,9 +232,9 @@ class DivarCrawler
      */
     protected $telegram;
 
-    public function __construct()
+    public function __construct(?Telegram $telegram = null)
     {
-        $this->telegram = new Telegram;
+        $this->telegram = is_null($telegram) ? new Telegram : $telegram;
         $this->lastStates = file_exists(Util::getPathOf(self::STATES_FILENAME))
             ? include(Util::getPathOf(self::STATES_FILENAME)) : [];
     }
