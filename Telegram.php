@@ -5,8 +5,8 @@ namespace App;
 class Telegram
 {
     const TELEGRAM_API_URL = 'https://api.telegram.org';
-    const BOT_TOKEN = 'bot1257768792:AAELXFtHGe-o6VbCIiVdTVq05i2jHFkYK3A';
-    const CHAT_ID = '70582354';//'-1001430381467';
+    const BOT_TOKEN = '1257768792:AAELXFtHGe-o6VbCIiVdTVq05i2jHFkYK3A';
+    const CHAT_ID = '-486727102';// group: -486727102, me: 70582354;
 
     /**
      * @var resource
@@ -20,7 +20,7 @@ class Telegram
 
     public function __construct()
     {
-        $this->baseUrl = self::TELEGRAM_API_URL . '/' . self::BOT_TOKEN . '/';
+        $this->baseUrl = self::TELEGRAM_API_URL . '/bot' . self::BOT_TOKEN . '/';
         $this->curl = curl_init();
         curl_setopt_array($this->curl, [
             CURLOPT_USERAGENT => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:75.0) Gecko/20100101 Firefox/75.0',
