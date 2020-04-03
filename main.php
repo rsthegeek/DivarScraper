@@ -10,7 +10,7 @@
  * @link     RStheGreat
  */
 
-define('START', microtime(true));
+define('START', microtime());
 
 require __DIR__ . '/Util.php';
 require __DIR__ . '/Telegram.php';
@@ -28,8 +28,8 @@ try {
 
     $master->crawl();
 
-    $info = "Finished ({$cityPriority}, {$objectivePriority}) in: "
-        . (microtime(true) - START) . " seconds";
+    $info = "Finished ({$cityPriority}, {$objectivePriority}) in "
+        . (microtime() - START) . " seconds";
     $telegram->sendMessage($info, true, true);
 } catch (Exception $e) {
     $telegram->sendMessage('❌ ' . $e->getMessage(), false, true);
