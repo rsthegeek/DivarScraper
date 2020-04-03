@@ -223,6 +223,11 @@ class DivarCrawler
     /**
      * @var array | null
      */
+    protected $handledTokens;
+
+        /**
+     * @var array | null
+     */
     protected $lastStates;
 
     /**
@@ -273,8 +278,12 @@ class DivarCrawler
     {
         $newLastToken = Util::object_get($response->widget_list[0] ?? [], 'data.token');
         foreach ($response->widget_list as $item) {
-            if (!is_null($lastToken) && Util::object_get($item, 'data.token') == $lastToken) {
+            $token = Util::object_get($item, 'data.token');
+            if (!is_null($lastToken) && $token == $lastToken) {
                 return $newLastToken;
+            }
+            if (in_array($token, $this->handledTokens)) {
+                continue;
             }
             /*
                 city: "تهران"
@@ -289,7 +298,7 @@ class DivarCrawler
                 normal_text: "در میدان آزادی"
                 red_text: "فوری "
              */
-            $link = str_replace(':token', Util::object_get($item, 'data.token'), self::BASE_LINK);
+            $link = str_replace(':token', $token, self::BASE_LINK);
             $text = '<i>' . Util::object_get($item, 'data.city', 'شهر') . '، '
                 . Util::object_get($item, 'data.district', '<del>:منطقه:</del>') . '</i>' . PHP_EOL
                 . '<b><a href="' . $link . '">' . Util::object_get($item, 'data.title', '???') . '</a></b>' . PHP_EOL
