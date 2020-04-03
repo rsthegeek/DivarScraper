@@ -1,4 +1,14 @@
 <?php
+/**
+ * Entry point for Divar Crawler
+ * php version 7.3
+ *
+ * @category Crawlers
+ * @package  DivarCrawler
+ * @author   RStheGreat <rasoolsystem@me.com>
+ * @license  RSproperty https://fekri.me/license
+ * @link     RStheGreat
+ */
 
 define('START', microtime(true));
 
@@ -8,10 +18,18 @@ require __DIR__ . '/DivarCrawler.php';
 
 try {
     $telegram = new App\Telegram;
-    $master = new App\DivarCrawler($telegram);
+    $cityPriority = $argv[1] ?? 'high';
+    $objectivePriority = $argv[2] ?? 'high';
+    $master = new App\DivarCrawler($telegram, $cityPriority, $objectivePriority);
+
+    echo "\033[0;32m"
+        . "DivarCrawler, cityPriority: {$cityPriority}, objectivePriority: {$objectivePriority}"
+        . "\033[0m\n";
+
     $master->crawl();
 
-    $info = "Finished in: " . (microtime(true) - START) . " seconds";
+    $info = "Finished ({$cityPriority}, {$objectivePriority}) in: "
+        . (microtime(true) - START) . " seconds";
     $telegram->sendMessage($info, true);
 } catch (Exception $e) {
     $telegram->sendMessage('❌ ' . $e->getMessage());
