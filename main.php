@@ -30,8 +30,8 @@ try {
 
     $info = "Finished ({$cityPriority}, {$objectivePriority}) in: "
         . (microtime(true) - START) . " seconds";
-    $telegram->sendMessage($info, true);
+    $telegram->sendMessage($info, true, true);
 } catch (Exception $e) {
-    $telegram->sendMessage('❌ ' . $e->getMessage());
+    $telegram->sendMessage('❌ ' . $e->getMessage(), false, true);
 }
 echo "\n\n\033[42m" . $info . "\033[0m\n";

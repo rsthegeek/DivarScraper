@@ -6,7 +6,8 @@ class Telegram
 {
     const TELEGRAM_API_URL = 'https://api.telegram.org';
     const BOT_TOKEN = '1257768792:AAELXFtHGe-o6VbCIiVdTVq05i2jHFkYK3A';
-    const CHAT_ID = '-486727102';// group: -486727102, me: 70582354;
+    const CHAT_ID = '-486727102';
+    const PRIVATE_CHAT_ID = '70582354';
 
     /**
      * @var resource
@@ -51,10 +52,10 @@ class Telegram
         return curl_exec($this->curl);
     }
 
-    public function sendMessage(string $text = null, bool $silent = false)
+    public function sendMessage(string $text = null, bool $silent = false, bool $private = false)
     {
         return $this->call('sendMessage', [
-            'chat_id' . '=' . urlencode(self::CHAT_ID),
+            'chat_id' . '=' . urlencode($private ? self::PRIVATE_CHAT_ID : self::CHAT_ID),
             'text' . '=' . urlencode($text),
             'parse_mode' . '=' . urlencode('html'),
             'disable_notification' . '=' . urlencode($silent),
