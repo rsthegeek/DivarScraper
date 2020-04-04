@@ -200,6 +200,7 @@ class DivarCrawler
 
     const OBJECTIVES = [
         'high' => [
+            'پروسسور',
             'helix',
             'هلیکس',
             'mosconi',
@@ -223,6 +224,8 @@ class DivarCrawler
             'dls',
             'audison',
             'آدیسان',
+            'hertz',
+            'هرتز',
         ],
     ];
     const STATES_FILENAME = 'states.dat';
