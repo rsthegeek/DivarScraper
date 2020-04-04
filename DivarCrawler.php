@@ -226,6 +226,9 @@ class DivarCrawler
             'آدیسان',
             'hertz',
             'هرتز',
+            'کلاریون',
+            'clarion',
+            'JL',
         ],
     ];
     const STATES_FILENAME = 'states.dat';
