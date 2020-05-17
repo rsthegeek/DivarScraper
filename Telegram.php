@@ -25,7 +25,7 @@ class Telegram
         $this->curl = curl_init();
         curl_setopt_array($this->curl, [
             CURLOPT_USERAGENT => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:75.0) Gecko/20100101 Firefox/75.0',
-            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_RETURNTRANSFER => true,
         ]);
     }
 
@@ -36,6 +36,7 @@ class Telegram
 
     public function sendPhoto(string $photo, ?string $caption = null)
     {
+//        var_dump('called sendPhoto', $photo, $caption);
         return $this->call('sendPhoto', [
             'chat_id' . '=' . urlencode(self::CHAT_ID),
             'photo' . '=' . urlencode($photo),
@@ -50,15 +51,35 @@ class Telegram
         curl_setopt($this->curl, CURLOPT_POSTFIELDS, implode('&', $params));
         curl_setopt($this->curl, CURLOPT_POST, count($params));
         return curl_exec($this->curl);
+//        var_dump($result);
+//        return json_encode($result);
     }
 
-    public function sendMessage(string $text = null, bool $silent = false, bool $private = false)
+    public function sendSticker(string $sticker)
     {
-        return $this->call('sendMessage', [
+//        var_dump('called sendPhoto', $sticker);
+        return $this->call('sendPhoto', [
+            'chat_id' . '=' . urlencode(self::CHAT_ID),
+            'photo' . '=' . urlencode($sticker),
+        ]);
+    }
+
+    public function sendMessage(
+        string $text = null,
+        bool $silent = false,
+        bool $private = false,
+        int $replyToMessageId = null
+    ) {
+//        var_dump('called sendMessage', $text);
+        $params = [
             'chat_id' . '=' . urlencode($private ? self::PRIVATE_CHAT_ID : self::CHAT_ID),
             'text' . '=' . urlencode($text),
             'parse_mode' . '=' . urlencode('html'),
             'disable_notification' . '=' . urlencode($silent),
-        ]);
+        ];
+        if (!is_null($replyToMessageId)) {
+            $params[] = 'reply_to_message_id' . '=' . urlencode($replyToMessageId);
+        }
+        return $this->call('sendMessage', $params);
     }
 }
