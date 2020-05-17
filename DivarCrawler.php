@@ -236,7 +236,7 @@ class DivarCrawler
     /**
      * @var array | null
      */
-    protected $handledTokens;
+    protected $handledTokens = [];
 
     /**
      * @var array | null
@@ -342,7 +342,7 @@ class DivarCrawler
                 . Util::object_get($item, 'data.description', '???') . PHP_EOL . PHP_EOL
                 . '#' . Util::object_get($item, 'data.city', 'شهر') . " #" . str_replace(' ', '_', $objective);
             $image = Util::object_get($item, 'data.image');
-            is_null($image) ? $this->telegram->sendMessage($text) : $this->telegram->sendPhoto($image, $text);
+            empty($image) ? $this->telegram->sendMessage($text) : $this->telegram->sendPhoto($image, $text);
         }
         return $newLastToken;
     }
