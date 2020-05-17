@@ -195,7 +195,7 @@ class DivarCrawler
             "neyshabur" => 'نیشابور',
             "yasuj" => 'یاسوج',
             "yazd" => 'یزد',
-        ]
+        ],
     ];
 
     const OBJECTIVES = [
@@ -283,7 +283,7 @@ class DivarCrawler
     {
         $curl = curl_init();
         curl_setopt_array($curl, [
-            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_RETURNTRANSFER => true,
             CURLOPT_USERAGENT => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:77.0) Gecko/20100101 Firefox/77.0',
         ]);
 
@@ -341,8 +341,15 @@ class DivarCrawler
                 . '<b><a href="' . $link . '">' . Util::object_get($item, 'data.title', '???') . '</a></b>' . PHP_EOL
                 . Util::object_get($item, 'data.description', '???') . PHP_EOL . PHP_EOL
                 . '#' . Util::object_get($item, 'data.city', 'شهر') . " #" . str_replace(' ', '_', $objective);
-            $image = Util::object_get($item, 'data.image');
-            empty($image) ? $this->telegram->sendMessage($text) : $this->telegram->sendPhoto($image, $text);
+//            $image = Util::object_get($item, 'data.image');
+//            if (empty($image)) {
+                $this->telegram->sendMessage($text);
+//            } elseif (Util::endsWith($image, '.webp')) {
+//                $messageId = $this->telegram->sendSticker($image)->result->message_id ?? null;
+//                $this->telegram->sendMessage($text, false, false, $messageId);
+//            } else {
+//                $this->telegram->sendPhoto($image, $text);
+//            }
         }
         return $newLastToken;
     }
