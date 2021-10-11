@@ -351,7 +351,7 @@ class DivarCrawler
             $image = isset($imagesArray[1]->src)
                 ? $imagesArray[1]->src
                 : Util::object_get($item, 'data.image');
-           var_dump($image);
+           
            if (empty($image)) {
                 $this->telegram->sendMessage($text);
            } elseif (Util::endsWith($image, '.webp')) {
