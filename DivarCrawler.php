@@ -232,6 +232,8 @@ class DivarCrawler
             'addzest',
             'آلپاین',
             'alpine',
+            'ناکامیچی',
+            'nakamichi',
             'JL',
         ],
     ];
