@@ -55,7 +55,7 @@ class Util
         return is_array($value) || $value instanceof ArrayAccess;
     }
 
-    public static function array_exists($array, $key)
+    public static function array_exists(array $array, $key)
     {
         if ($array instanceof ArrayAccess) {
             return $array->offsetExists($key);
@@ -69,7 +69,7 @@ class Util
         return __DIR__ . '/' . $fileName;
     }
 
-    public static function endsWith($string, $endString)
+    public static function endsWith(string $string, string $endString)
     {
         $len = strlen($endString);
         if ($len == 0) {
