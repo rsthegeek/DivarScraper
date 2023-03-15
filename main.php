@@ -11,16 +11,18 @@
  */
 
 define('START', time());
+require __DIR__ . '/vendor/autoload.php';
 
-require __DIR__ . '/Util.php';
-require __DIR__ . '/Telegram.php';
-require __DIR__ . '/DivarCrawler.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->safeLoad();
+
 
 try {
-    $telegram = new App\Telegram;
+    $telegram = new RStheGeek\DivarScraper\Telegram;
     $cityPriority = $argv[1] ?? 'high';
     $objectivePriority = $argv[2] ?? 'high';
-    $master = new App\DivarCrawler($cityPriority, $objectivePriority, $telegram);
+    $master = new RStheGeek\DivarScraper\Scraper($cityPriority, $objectivePriority, $telegram);
 
     echo "\033[0;32m"
         . "DivarCrawler, cityPriority: {$cityPriority}, objectivePriority: {$objectivePriority}"

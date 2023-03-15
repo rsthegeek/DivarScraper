@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace RStheGeek\DivarScraper;
 
-class DivarCrawler
+class Scraper
 {
     const BASE_URL = 'https://api.divar.ir/v8/web-search/:city?q=:query';
     const BASE_LINK = 'https://divar.ir/v/:token';

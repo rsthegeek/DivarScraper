@@ -1,0 +1,19 @@
+{
+    "name": "rsthegeek/divarscraper",
+    "description": "Divar.ir Scraper for Real-Time Ad Monitoring",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "RStheGeek\\DivarScraper\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "MohammadR. Fekri",
+            "email": "fekri.m@icloud.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
