@@ -265,9 +265,9 @@ class DivarCrawler
     protected $objectivePriority;
 
     public function __construct(
-        ?Telegram $telegram = null,
         string $cityPriority,
-        string $objectivePriority
+        string $objectivePriority,
+        ?Telegram $telegram = null,
     ) {
         $this->telegram = is_null($telegram) ? new Telegram : $telegram;
 
@@ -319,38 +319,29 @@ class DivarCrawler
      */
     protected function handleResponseAndGetLastToken(object $response, ?string $lastToken, string $objective): ?string
     {
-        $newLastToken = Util::object_get($response->widget_list[0] ?? [], 'data.token');
-        foreach ($response->widget_list as $item) {
+        $newLastToken = Util::object_get($response->web_widgets->post_list[0] ?? [], 'data.token');
+        foreach ($response->web_widgets->post_list as $item) {
             $token = Util::object_get($item, 'data.token');
             if (!is_null($lastToken) && $token == $lastToken) {
                 return $newLastToken;
             }
-            if (in_array($token, $this->handledTokens)) {
+            if (is_null($token) || in_array($token, $this->handledTokens)) {
                 continue;
             }
             /*
-                city: "تهران"
-                district: "میدان آزادی"
-                category: "قطعات یدکی و لوازم جانبی خودرو"
-                title: "مزایده امپلی فایر هلیکس المان مدل d4"
-                token: "gX_d4u0b"
-                image: "https://s101.divarcdn.com/static/thumbnails/1585754051/gX_d4u0b.jpg"
-                description: "توافقی"
-                has_chat: false
-                image_overlay_tag: null
-                normal_text: "در میدان آزادی"
-                red_text: "فوری "
+                Refer to postRow.json
              */
             $link = str_replace(':token', $token, self::BASE_LINK);
-            $text = '<i>' . Util::object_get($item, 'data.city', 'شهر') . '، '
-                . Util::object_get($item, 'data.district', '<del>:منطقه:</del>') . '</i>' . PHP_EOL
+            $city = Util::object_get($item, 'data.action.payload.web_info.city_persian', 'شهر');
+            $text = '<i>' . $city . '، '
+                . Util::object_get($item, 'data.action.payload.web_info.district_persian', '<del>منطقه</del>') . '</i>' . PHP_EOL
                 . '<b><a href="' . $link . '">' . Util::object_get($item, 'data.title', '???') . '</a></b>' . PHP_EOL
-                . Util::object_get($item, 'data.description', '???') . PHP_EOL . PHP_EOL
-                . '#' . Util::object_get($item, 'data.city', 'شهر') . " #" . str_replace(' ', '_', $objective);
-            $imagesArray = Util::object_get($item, 'data.web_image');
+                . Util::object_get($item, 'data.middle_description_text', '???') . PHP_EOL . PHP_EOL
+                . '#' . $city . " #" . str_replace(' ', '_', $objective);
+            $imagesArray = Util::object_get($item, 'data.image_url');
             $image = isset($imagesArray[1]->src)
                 ? $imagesArray[1]->src
-                : Util::object_get($item, 'data.image');
+                : null;
            
            if (empty($image)) {
                 $this->telegram->sendMessage($text);

@@ -1,0 +1,82 @@
+{
+    "widget_type": "POST_ROW",
+    "data": {
+        "@type": "type.googleapis.com/widgets.PostRowData",
+        "image_url": [
+            {
+            "src": "https://s100.divarcdn.com/static/thumbnails/1678463089/AZL4xg_b.webp",
+            "type": "image/webp"
+            },
+            {
+            "src": "https://s100.divarcdn.com/static/thumbnails/1678463089/AZL4xg_b.jpg",
+            "type": "image/jpeg"
+            }
+        ],
+        "image_count": 1,
+        "title": "پخش کننده موسیقی همراه fiio ( موزیک پلیر )",
+        "has_chat": true,
+        "top_description_text": "در حد نو",
+        "middle_description_text": "۵,۹۰۰,۰۰۰ تومان",
+        "bottom_description_text": "۵ روز پیش در قنات‌کوثر",
+        "red_text": "",
+        "action": {
+            "type": "VIEW_POST",
+            "payload": {
+                "@type": "type.googleapis.com/widgets.ViewPostPayload",
+                "token": "AZL4xg_b",
+                "web_info": {
+                    "title": "پخش کننده موسیقی همراه fiio ( موزیک پلیر )",
+                    "district_persian": "قنات‌کوثر",
+                    "city_persian": "تهران",
+                    "category_slug_persian": "پخش‌کننده همراه"
+                },
+                "vertical_info": {
+                    "@type": "type.googleapis.com/base.VerticalInfo",
+                    "vertical_type": 4
+                }
+            },
+            "fallback_link": "",
+            "page_pop_link": false
+        },
+        "checkable": false,
+        "label": "",
+        "label_color": "",
+        "note": "",
+        "tags": [],
+        "standard_label_color": "UNKNOWN",
+        "is_checked": false,
+        "has_divider": true,
+        "padded": false,
+        "token": "AZL4xg_b"
+    },
+    "action_log": {
+        "server_side_info": {
+            "info": {
+            "@type": "type.googleapis.com/action_log.PostItemInfo",
+            "post_token": "AZL4xg_b",
+            "index": 0,
+            "post_type": "SEARCH",
+            "list_type": "PAGE",
+            "source_page": "POST_LIST_PAGE",
+            "extra_data": {
+                "@type": "type.googleapis.com/action_log.PostItemInfo.SearchExtraData",
+                "jli": {
+                "category": {
+                    "value": "ROOT"
+                },
+                "query": "fiio",
+                "cities": [
+                    "1"
+                ]
+                },
+                "last_post_sort_date": 1664349511458825,
+                "no_cat_page": false
+            }
+            },
+            "item_type": {
+            "type": "POST_ITEM"
+            }
+        },
+        "enabled": true
+    }
+}

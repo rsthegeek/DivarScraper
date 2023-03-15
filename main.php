@@ -20,7 +20,7 @@ try {
     $telegram = new App\Telegram;
     $cityPriority = $argv[1] ?? 'high';
     $objectivePriority = $argv[2] ?? 'high';
-    $master = new App\DivarCrawler($telegram, $cityPriority, $objectivePriority);
+    $master = new App\DivarCrawler($cityPriority, $objectivePriority, $telegram);
 
     echo "\033[0;32m"
         . "DivarCrawler, cityPriority: {$cityPriority}, objectivePriority: {$objectivePriority}"
