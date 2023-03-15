@@ -22,9 +22,9 @@ class Telegram
 
     public function __construct()
     {
-        $this->botToken = getenv('TELEGRAM_BOT_TOKEN');
-        $this->chatId = getenv('TELEGRAM_CHAT_ID');
-        $this->privateChatId = getenv('TELEGRAM_PRIVATE_CHAT_ID');
+        $this->botToken = $_ENV['TELEGRAM_BOT_TOKEN'];
+        $this->chatId = $_ENV['TELEGRAM_CHAT_ID'];
+        $this->privateChatId = $_ENV['TELEGRAM_PRIVATE_CHAT_ID'];
 
         $this->baseUrl = self::TELEGRAM_API_URL . '/bot' . $this->botToken . '/';
         $this->curl = curl_init();
@@ -52,12 +52,11 @@ class Telegram
 
     protected function call(string $method, array $params): bool
     {
+        // curl_setopt($this->curl, CURLOPT_VERBOSE, true);
         curl_setopt($this->curl, CURLOPT_URL, $this->baseUrl . $method);
         curl_setopt($this->curl, CURLOPT_POSTFIELDS, implode('&', $params));
         curl_setopt($this->curl, CURLOPT_POST, count($params));
         return curl_exec($this->curl);
-//        var_dump($result);
-//        return json_encode($result);
     }
 
     public function sendSticker(string $sticker)

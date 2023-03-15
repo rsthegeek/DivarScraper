@@ -320,6 +320,7 @@ class Scraper
     protected function handleResponseAndGetLastToken(object $response, ?string $lastToken, string $objective): ?string
     {
         $newLastToken = Util::object_get($response->web_widgets->post_list[0] ?? [], 'data.token');
+
         foreach ($response->web_widgets->post_list as $item) {
             $token = Util::object_get($item, 'data.token');
             if (!is_null($lastToken) && $token == $lastToken) {

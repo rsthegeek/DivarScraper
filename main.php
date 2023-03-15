@@ -17,8 +17,11 @@ require __DIR__ . '/vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->safeLoad();
 
+$dotenv->required(['TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID', 'TELEGRAM_PRIVATE_CHAT_ID']);
 
-try {
+
+
+// try {
     $telegram = new RStheGeek\DivarScraper\Telegram;
     $cityPriority = $argv[1] ?? 'high';
     $objectivePriority = $argv[2] ?? 'high';
@@ -33,7 +36,7 @@ try {
     $info = "Finished ({$cityPriority}, {$objectivePriority}) in "
         . (time() - START) . " seconds";
     $telegram->sendMessage($info, true, true);
-} catch (Exception $e) {
-    $telegram->sendMessage('❌ ' . $e->getMessage(), false, true);
-}
+// } catch (Exception $e) {
+//     $telegram->sendMessage('❌ ' . $e->getMessage(), false, true);
+// }
 echo "\n\n\033[42m" . $info . "\033[0m\n";
