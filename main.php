@@ -1,13 +1,13 @@
 <?php
 /**
- * Entry point for Divar Crawler
+ * Entry point for Divar Scraper
  * php version 7.3
  *
- * @category Crawlers
- * @package  DivarCrawler
- * @author   RStheGreat <rasoolsystem@me.com>
- * @license  RSproperty https://fekri.me/license
- * @link     RStheGreat
+ * @category Scrapers
+ * @package  DivarScraper
+ * @author   RStheGeek <fekri.m@icloud.com>
+ * @license  MIT
+ * @link     RStheGeek
  */
 
 define('START', time());
